@@ -2,6 +2,42 @@
 
 #define ERROR_GRID "Error: Failed to create the grid.\n"
 
+int find_row_nb(char*buffer)
+{
+    int row;
+
+    row = 0;
+    while (*buffer != '\n')
+        buffer++;
+    buffer++;
+    while (*buffer)
+    {
+        while (*buffer && *buffer != '\n')
+        {
+            buffer++;
+        }
+        row++;
+        buffer++;
+    }
+    return (row);
+}
+
+int find_col_nb(char*buffer)
+{
+    int col;
+
+    col = 0;
+    while (*buffer != '\n')
+        buffer++;
+    buffer++;
+    while (*buffer && *buffer != '\n')
+    {
+        col++;
+        buffer++;
+    }
+    return (col);
+}
+
 char    **create_grid(char *buffer)
 {
     int x;
@@ -16,8 +52,6 @@ char    **create_grid(char *buffer)
         x++;
         buffer++;
      }
-        
-    
     grid = malloc(y * sizeof(char *));
     if (grid == NULL) {
         write(1, ERROR_GRID, sizeof(ERROR_GRID) - 1);
@@ -36,7 +70,8 @@ char    **create_grid(char *buffer)
     return (grid);
 }
 
-void    freeGrid(char **grid, int y) {
+void    freeGrid(char **grid, int y)
+{
     int i;
 
     i = 0;
@@ -54,7 +89,7 @@ void    populateGrid(char *buffer, char **grid)
     int j;
 
     i = 0;
-    buffer += 4;
+    buffer += 5; 
     while(*buffer)
     {
         j = 0;
@@ -69,22 +104,25 @@ void    populateGrid(char *buffer, char **grid)
     } 
 }
 
-void    printGrid(char **grid, int x, int y) {
+void printMatrix(char **matrix, char *buffer) 
+{
+    int rows; 
+    int cols; 
     int i;
     int j;
-    char new_line;
 
+    rows = find_row_nb(buffer);
+    cols =  find_col_nb(buffer);
+    printf("this is rows: %d\n", rows);
+    printf("this is cols: %d\n", cols);
     i = 0;
-    new_line = '\n';
-    while (i < y)
-    {
-        j = 0;
-        while (j < x) 
-        {
-            write(1, grid[i][j], 1);
+    while (i < rows) {
+        j = 0; 
+        while (j < cols) {
+            printf("%c", matrix[i][j]);
             j++;
         }
-        write(1, &new_line, 1);
+        printf("\n");
         i++;
     }
 }

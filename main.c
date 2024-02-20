@@ -1,32 +1,46 @@
 #include "bsq.h"
 
+
 int main(int argc, char **argv)
 {
     int fd;
+    int i;
     int  bytes_read;
     char    buffer[1024];
+    char    **grid;
 
     if (argc == 1)
-        //read on stand input
-    else (argc > 1)
     {
-        fd = open("map.txt", O_RDONLY);
-        if (fd == -1)
-        {
-            //ERROR
-            exit(1);
-        }
+        bytes_read = read(STDIN_FILENO, buffer, 1023);
     }
-    bytes_read = read(fd, buffer, 1023)
+    i = 1;
+	while (i < argc)
+	{
+		fd = open(argv[i], O_RDONLY);
+		if (fd == -1)
+		{
+			return ("Error!\n");
+		}
+		i ++;
+	}
+    bytes_read = read(fd, buffer, 1023);
     if (bytes_read == -1) 
     {
-        //ERROR
+        char error_read[] = "Error: Failed while trying to read the map file.\n";
+        write(1, &error_read, 42);
         close(fd);
         exit(1); 
     }
     buffer[bytes_read] = '\0';
+    printf("%s\n", buffer);
 
-/*
+    grid = create_grid(buffer);
+
+
+    populateGrid(buffer, grid);
+
+    printMatrix(grid, buffer);
+     /*
     check if map is valid; (map_is_valid.c)
     
     create a grid: (creat_grid.c)
@@ -37,6 +51,8 @@ int main(int argc, char **argv)
 
     print it;
 
+    freegrid
+*/
     close(fd);
-    */
+    return (0);
 }

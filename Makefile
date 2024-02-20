@@ -1,6 +1,6 @@
 NAME = bsq
 
-SRCS = main.c 
+SRCS = main.c create_grid.c
 
 OBJS = ${SRC:.c=.o}
 

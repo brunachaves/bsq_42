@@ -23,4 +23,3 @@ void    check_char(char *map)
 {
     //can only be those introduced in the first line.
 }
-
