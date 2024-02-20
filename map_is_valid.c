@@ -1,5 +1,21 @@
 #include "bsq.h"
 
+void map_is_valid(int fd, int len)
+{
+    char    *buffer = malloc(len);
+
+    while (read(fd, &buffer, 1) == 1 && buffer[len] == '\n')
+	{
+	   
+	}
+    else
+    {
+        write(1, "map error\n", 10);
+        return (-1)
+    }
+    free(buffer);
+}
+
 void    check_first_line(char *map)
 {
     /*is invalid if a character is missing from the first line, or if two char-
@@ -9,6 +25,7 @@ acters (of empty, full and obstacle) are identical.
 
 void    check_length(char *map)
 {
+    
 //lenghts should be the same
 //strlen until \n
 }

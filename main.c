@@ -9,7 +9,6 @@ int main(int argc, char **argv)
 
 	if (argc == 1)
 	{
-		//read on stand input usando read(0, ..., ...)
 		bytes_read = read(0, buffer, sizeof(buffer));
 		if (bytes_read == -1)
 		{
@@ -17,9 +16,6 @@ int main(int argc, char **argv)
 		}
 	}
 	else if (argc > 1)
-	/*
-	a gente tem que ser capaz de ler se colocarem 10293 mapas diferentes
-	talvez setar um counter e declarar assim:*/
 	{
 		int i;
 		int fd;
@@ -35,21 +31,28 @@ int main(int argc, char **argv)
 			i ++;
 		}
 	
-	//Desse modo a gente le um e atualiza o counter pra ler o outro. 
-	/*
-	VAMOS LER AGORA
-	No inicio de map.pl, a primeira coisa eh o tamanho da linha. Entao a gente pode ler essa info pra determinar tamanho de buffer
-	*/
-		char c; //a ideia eh ler o mapa letter by letter ja que eh so esses digitos iniciais
+		char c;
 		int len;
-
+		int	height;
+		char *buffer = malloc(height * len * (sizeof(char));
+		
+		height = 0;
 		len = 0;
 		c = ' ';
-		while (read(fd, &c, 1) == 1 c != '.') //ex "20.ox"
+		while (read(fd, &c, 1) == 1 && c != '\n')
 		{
-		   if (c >= '0' && c <= '9') 
-				len = (len * 10) + (c - '0');
+		   while (c >= '0' && c <= '9')
+		   {
+				height = height * 10 + (c - '0');
+		   }
+		   len ++;
 		}
+	    //is_map_valid()
+		
+		while (read(fd, &buffer, sizeof(buffer)) != EOF)
+			
+
+		
    /*
 	check if map is valid; (map_is_valid.c)
 	
@@ -61,6 +64,7 @@ int main(int argc, char **argv)
 
 	print it;
 	*/
+	write(1, "\n", 1);
 	close(fd);
 	}
 }
