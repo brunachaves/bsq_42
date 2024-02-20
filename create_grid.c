@@ -89,7 +89,9 @@ void    populateGrid(char *buffer, char **grid)
     int j;
 
     i = 0;
-    buffer += 5; 
+    while(*buffer != '\n')
+        buffer++;
+    buffer++; 
     while(*buffer)
     {
         j = 0;
@@ -113,8 +115,6 @@ void printMatrix(char **matrix, char *buffer)
 
     rows = find_row_nb(buffer);
     cols =  find_col_nb(buffer);
-    printf("this is rows: %d\n", rows);
-    printf("this is cols: %d\n", cols);
     i = 0;
     while (i < rows) {
         j = 0; 

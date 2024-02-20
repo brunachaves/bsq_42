@@ -7,7 +7,7 @@ int main(int argc, char **argv)
     int i;
     int  bytes_read;
     char    buffer[1024];
-    char    **grid;
+    char    **map_grid;
 
     if (argc == 1)
     {
@@ -34,12 +34,12 @@ int main(int argc, char **argv)
     buffer[bytes_read] = '\0';
     printf("%s\n", buffer);
 
-    grid = create_grid(buffer);
+    map_grid = create_grid(buffer);
 
 
-    populateGrid(buffer, grid);
+    populateGrid(buffer, map_grid);
 
-    printMatrix(grid, buffer);
+    printMatrix(map_grid, buffer);
      /*
     check if map is valid; (map_is_valid.c)
     
