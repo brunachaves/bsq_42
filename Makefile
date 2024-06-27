@@ -1,6 +1,6 @@
 NAME = bsq
 
-SRCS = main.c create_grid.c
+SRCS = main.c create_grid.c calculate.c size.c map_is_valid.c map_is_valid02.c
 
 OBJS = ${SRC:.c=.o}
 
@@ -18,5 +18,3 @@ fclean: clean
 	rm -f ${NAME}
 
 re: fclean all
-
-
